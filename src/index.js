@@ -9,9 +9,30 @@ import ReactDOM from 'react-dom';
 
 let root = document.querySelector("#root")
 
-let data = "My React"
-
-ReactDOM.render(<div id="box">Hello { data }</div>, root, () => {
+// let data = "My React"
+let data = [
+  {
+    name: 'Bob',
+    age: 18
+  },
+  {
+    name: 'Tom',
+    age: 20
+  },
+]
+ReactDOM.render(<div id="box">Hello
+<ul>
+    {
+      data.map((item, index) => {
+        let { name, age } = item;
+        return <li key={ index }>
+          <span>{ name }</span>
+          <span>{ age }</span>
+        </li>
+      })
+    }
+  </ul>
+</div>, root, () => {
   let oBox = document.querySelector("#box")
   console.log(oBox.innerHTML)
 });
