@@ -1,5 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+import './myJSX.js'
 /***
  * ReactDOM.render([JSX],[CONTAINER], [CALLBACK]);  把JSX元素渲染到页面中
  *    JSX: REACT 的虚拟元素
@@ -7,32 +8,32 @@ import ReactDOM from 'react-dom';
  *    CALLBACK:  回调
  */
 
-let root = document.querySelector("#root")
+// let root = document.querySelector("#root")
 
 // let data = "My React"
-let data = [
-  {
-    name: 'Bob',
-    age: 18
-  },
-  {
-    name: 'Tom',
-    age: 20
-  },
-]
-ReactDOM.render(<div id="box">Hello
-<ul>
-    {
-      data.map((item, index) => {
-        let { name, age } = item;
-        return <li key={ index }>
-          <span>{ name }</span>
-          <span>{ age }</span>
-        </li>
-      })
-    }
-  </ul>
-</div>, root, () => {
-  let oBox = document.querySelector("#box")
-  console.log(oBox.innerHTML)
-});
+// let data = [
+//   {
+//     name: 'Bob',
+//     age: 18
+//   },
+//   {
+//     name: 'Tom',
+//     age: 20
+//   },
+// ]
+// ReactDOM.render(<div id="box">Hello
+// <ul>
+//     {
+//       data.map((item, index) => {
+//         let { name, age } = item;
+//         return <li key={ index }>
+//           <span>{ name }</span>
+//           <span>{ age }</span>
+//         </li>
+//       })
+//     }
+//   </ul>
+// </div>, root, () => {
+//   let oBox = document.querySelector("#box")
+//   console.log(oBox.innerHTML)
+// });
