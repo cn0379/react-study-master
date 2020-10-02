@@ -40,7 +40,7 @@ function render(obj, container, callBack) {
     if (!props[attr]) break;
     // 保存值
     let value = props[attr];
-    if (value == undefined) continue;
+    // if (value == undefined) continue;
 
     switch (attr.toUpperCase()) {
       case 'CLASSNAME':
@@ -54,7 +54,7 @@ function render(obj, container, callBack) {
         }
         break;
         case 'CHILDREN':
-          !(value instanceof Array) ? value = [value] : null;
+          // !(value instanceof Array) ? value = [value] : null;
     }
  
     if (attr === 'children') {

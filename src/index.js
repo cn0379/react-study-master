@@ -1,6 +1,7 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-import './myJSX.js'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Dialog from './component/Dialog'
+// import './myJSX.js'
 /***
  * ReactDOM.render([JSX],[CONTAINER], [CALLBACK]);  把JSX元素渲染到页面中
  *    JSX: REACT 的虚拟元素
@@ -8,7 +9,6 @@ import './myJSX.js'
  *    CALLBACK:  回调
  */
 
-// let root = document.querySelector("#root")
 
 // let data = "My React"
 // let data = [
@@ -37,3 +37,9 @@ import './myJSX.js'
 //   let oBox = document.querySelector("#box")
 //   console.log(oBox.innerHTML)
 // });
+let root = document.querySelector("#root")
+
+ReactDOM.render(
+  <div>
+    <Dialog title="标题" type={1} />
+  </div>, root)
