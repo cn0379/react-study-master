@@ -1,10 +1,12 @@
 import React from 'react'
 
-export default function Dialog(props) {
-  let { title, type } = props;
+export default function Dialog (props) {
+  let { title, type, con, children } = props;
   return <section>
-    <h1>第一个标题</h1>
-    <div>{title}</div>
-    <div>{type === 1 ? '正确' : '错误'}</div>
+    <h1> 第一个标题 </h1>
+    <div>{ title }</div>
+    <div>{ type === 1 ? '正确' : '错误' }</div>
+    { children }
+    { con }
   </section>
 }

@@ -37,9 +37,19 @@ import Dialog from './component/Dialog'
 //   let oBox = document.querySelector("#box")
 //   console.log(oBox.innerHTML)
 // });
+
 let root = document.querySelector("#root")
 
 ReactDOM.render(
   <div>
     <Dialog title="标题" type={1} />
+    <Dialog type="请登录" con={ 
+      <div>
+        <input type="text" placeholder="请输入账户" />
+        <input type="password" placeholder="请输入密码" />
+      </div>
+    }>
+      <button>Login</button>
+      <button>Cancel</button>
+    </Dialog>
   </div>, root)
