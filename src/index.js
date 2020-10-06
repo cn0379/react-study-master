@@ -96,49 +96,111 @@ let root = document.querySelector("#root")
 
 // ReactDOM.render(<Clock />, root)
 
-class Vote extends React.Component {
-  static defaultProps = {};
-  static propTypes = {
-    title: PropTypes.string.isRequired
-  };
-  constructor(props) {
-    super(props)
-    this.state = {
-      n: 0,
-      m: 0,
-    }
-  }
+// class Vote extends React.Component {
+//   static defaultProps = {};
+//   static propTypes = {
+//     title: PropTypes.string.isRequired
+//   };
+//   constructor(props) {
+//     super(props)
+//     this.state = {
+//       n: 0,
+//       m: 0,
+//     }
+//   }
 
-  render() {
-    let { n, m } = this.state;
-    let rate = (n + m) === 0 ? '0%' : (n / (n + m) * 100 + '%')
-    return <section className="panel panel-default" style={{ width: '60%', margin: '20px auto' }}>
-      <div className="panel-heading" > <h3 className="panel-title">{this.props.title}</h3></div>
-      <div className="panel-body">
-        支持人数: {n}
-        <br /><br />
-          反对人数: {m}
-        <br /><br />
-          支持率: {rate}
-      </div>
-      <div className="panel-footer" >
-        <button className="btn btn-success" onClick={ this.support } >支持</button>
-        <button className="btn btn-danger" onClick= { this.against } >反对</button>
-      </div>
-    </section>
-  }
+//   render() {
+//     let { n, m } = this.state;
+//     let rate = (n + m) === 0 ? '0%' : (n / (n + m) * 100 + '%')
+//     return <section className="panel panel-default" style={{ width: '60%', margin: '20px auto' }}>
+//       <div className="panel-heading" > <h3 className="panel-title">{this.props.title}</h3></div>
+//       <div className="panel-body">
+//         支持人数: {n}
+//         <br /><br />
+//           反对人数: {m}
+//         <br /><br />
+//           支持率: {rate}
+//       </div>
+//       <div className="panel-footer" >
+//         <button className="btn btn-success" onClick={ this.support } >支持</button>
+//         <button className="btn btn-danger" onClick= { this.against } >反对</button>
+//       </div>
+//     </section>
+//   }
 
-  support = () => {
-    this.setState({
-      n: this.state.n + 1
-    })
-  }
-  against = () => {
-    this.setState({
-      m: this.state.m + 1
-    })
-  }
+//   support = () => {
+//     this.setState({
+//       n: this.state.n + 1
+//     })
+//   }
+//   against = () => {
+//     this.setState({
+//       m: this.state.m + 1
+//     })
+//   }
+// }
+
+
+// ReactDOM.render(<Vote title="世界你好!" />, root)
+
+function resData() {
+  return new Promise(reslove => {
+    setTimeout(() => {
+      reslove(2)
+    }, 3000)
+  })
 }
 
 
-ReactDOM.render(<Vote title="世界你好!" />, root)
+class A extends React.Component {
+  // static defaultProps {}
+  constructor() {
+    super();
+    console.log('1=constructor');
+    this.state = { n: 1 };
+  }
+
+  async componentWillMount() {
+    console.log('2----第一次渲染之前', this.refs.refDeom);
+    let result = await resData()
+    this.setState({
+      n: result
+    })
+  }
+
+  componentDidMount() {
+    console.log('4----第一次渲染之后', this.refs.refDeom);
+    setInterval(() => {
+      this.setState({
+        n: this.state.n + 1
+      })
+    }, 5000)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('5是否允许更新')
+    // 在这个钩子函数中,我们获取的state 不是最新修改的而是上一次的状态
+    if (nextState.n > 3) {
+      return false
+    }
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log(this.state.n, nextState.n)
+    console.log('6更新前')
+  }
+
+  componentDidUpdate() {
+    console.log('8更新后')
+  }
+
+  render() {
+    console.log('RENDER')
+    return <section>
+      <div ref="refDeom" >{this.state.n}</div>
+    </section>
+  }
+}
+
+ReactDOM.render(<A />, root)
