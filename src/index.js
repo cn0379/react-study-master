@@ -4,6 +4,7 @@ import Dialog from './component/Dialog'
 import 'bootstrap/dist/css/bootstrap.css'
 import PropTypes from 'prop-types'
 import Swiper from './component/Swiper'
+import Vote from './component/Vote/Vote';
 
 // import './myJSX.js'
 /***
@@ -256,17 +257,22 @@ let root = document.querySelector("#root")
 
 // 轮播 
 
-let IMG_DATA = []
-for (let i = 1; i < 5; i++) {
-  IMG_DATA.push(
-    {
-      title: i,
-      id: i,
-      pic: require(`./static/assets/m${i}.jpg`)
-    }
-  )
-}
+// let IMG_DATA = []
+// for (let i = 1; i < 5; i++) {
+//   IMG_DATA.push(
+//     {
+//       title: i,
+//       id: i,
+//       pic: require(`./static/assets/m${i}.jpg`)
+//     }
+//   )
+// }
 
-ReactDOM.render(
-  <Swiper data={IMG_DATA} interval={2000} step={1} speed={300} />,
-  root)
+// ReactDOM.render(
+//   <Swiper data={IMG_DATA} interval={2000} step={1} speed={300} />,
+//   root)
+
+// 复合组件
+ReactDOM.render ( <main>
+  <Vote cound={{n: 100,m: 1000}}  title="法国VS英国" />
+</main>, root )

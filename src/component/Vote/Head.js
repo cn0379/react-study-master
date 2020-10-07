@@ -1,0 +1,15 @@
+import React from 'react'
+
+export default class Head extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    return <div className={'panel-heading'} >
+      <h3 className={'panel-title'} >
+        标题
+        </h3>
+    </div>
+  }
+}
