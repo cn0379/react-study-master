@@ -3,6 +3,7 @@ import ReactDOM, { render } from 'react-dom';
 import Dialog from './component/Dialog'
 import 'bootstrap/dist/css/bootstrap.css'
 import PropTypes from 'prop-types'
+import Swiper from './component/Swiper'
 
 // import './myJSX.js'
 /***
@@ -143,64 +144,129 @@ let root = document.querySelector("#root")
 
 // ReactDOM.render(<Vote title="世界你好!" />, root)
 
-function resData() {
-  return new Promise(reslove => {
-    setTimeout(() => {
-      reslove(2)
-    }, 3000)
-  })
-}
+// function resData() {
+//   return new Promise(reslove => {
+//     setTimeout(() => {
+//       reslove(2)
+//     }, 3000)
+//   })
+// }
 
 
-class A extends React.Component {
-  // static defaultProps {}
-  constructor() {
-    super();
-    console.log('1=constructor');
-    this.state = { n: 1 };
-  }
+// class A extends React.Component {
+//   // static defaultProps {}
+//   constructor() {
+//     super();
+//     console.log('1=constructor');
+//     this.state = { n: 1 };
+//   }
 
-  async componentWillMount() {
-    console.log('2----第一次渲染之前', this.refs.refDeom);
-    let result = await resData()
-    this.setState({
-      n: result
-    })
-  }
+//   async componentWillMount() {
+//     console.log('2----第一次渲染之前', this.refs.refDeom);
+//     let result = await resData()
+//     this.setState({
+//       n: result
+//     })
+//   }
 
-  componentDidMount() {
-    console.log('4----第一次渲染之后', this.refs.refDeom);
-    setInterval(() => {
-      this.setState({
-        n: this.state.n + 1
-      })
-    }, 5000)
-  }
+//   componentDidMount() {
+//     console.log('4----第一次渲染之后', this.refs.refDeom);
+//     setInterval(() => {
+//       this.setState({
+//         n: this.state.n + 1
+//       })
+//     }, 5000)
+//   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('5是否允许更新')
-    // 在这个钩子函数中,我们获取的state 不是最新修改的而是上一次的状态
-    if (nextState.n > 3) {
-      return false
+//   shouldComponentUpdate(nextProps, nextState) {
+//     console.log('5是否允许更新')
+//     // 在这个钩子函数中,我们获取的state 不是最新修改的而是上一次的状态
+//     if (nextState.n > 3) {
+//       return false
+//     }
+//     return true;
+//   }
+
+//   componentWillUpdate(nextProps, nextState) {
+//     console.log(this.state.n, nextState.n)
+//     console.log('6更新前')
+//   }
+
+//   componentDidUpdate() {
+//     console.log('8更新后')
+//   }
+
+//   render() {
+//     console.log('RENDER')
+//     return <section>
+//       <div ref="refDeom" >{this.state.n}</div>
+//     </section>
+//   }
+// }
+
+// ReactDOM.render(<A />, root)
+
+// 父级组件
+// class Penel extends React.Component {
+//   constructor() {
+//     super()
+//     this.state = { n: 0 }
+//   }
+
+//   fn = () => {
+//     this.setState({
+//       n: this.state.n + 1,
+//     })
+//   }
+
+//   render() {
+//     return <section className='penel penel-default'>
+//       <Head  count={ this.state.n } />
+//       <Body cb={ this.fn } />
+//     </section>
+//   }
+// }
+
+// // 子级组件
+// class Head extends React.Component {
+//   constructor() {
+//     super()
+//   }
+
+//   render() {
+//     return <div className='penel-heading' >
+//       <h3 className='penel-title'>点击次数: { this.props.count } </h3>
+//     </div>
+//   }
+// }
+
+// class Body extends React. Component {
+//   constructor() {
+//     super()
+//   } 
+
+//   render() {
+//     return <div className='penel-body'>
+//       <button className='btn btn-success' onClick={ this.props.cb } >点我</button>
+//     </div>
+//   }
+// }
+
+// ReactDOM.render(<Penel/>, root)
+
+// 轮播 
+
+let IMG_DATA = []
+for (let i = 1; i < 5; i++) {
+  IMG_DATA.push(
+    {
+      title: i,
+      id: i,
+      pic: require(`./static/assets/m${i}.jpg`)
     }
-    return true;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    console.log(this.state.n, nextState.n)
-    console.log('6更新前')
-  }
-
-  componentDidUpdate() {
-    console.log('8更新后')
-  }
-
-  render() {
-    console.log('RENDER')
-    return <section>
-      <div ref="refDeom" >{this.state.n}</div>
-    </section>
-  }
+  )
 }
 
-ReactDOM.render(<A />, root)
+ReactDOM.render(
+  <Swiper data={IMG_DATA} interval={2000} step={1} speed={300} />,
+  root)
