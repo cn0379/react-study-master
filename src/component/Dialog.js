@@ -6,7 +6,7 @@ export default function Dialog (props) {
     <h1> 第一个标题 </h1>
     <div>{ title }</div>
     <div>{ type === 1 ? '正确' : '错误' }</div>
-    { children }
+    { children }  
     { con }
   </section>
 }

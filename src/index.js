@@ -274,5 +274,5 @@ let root = document.querySelector("#root")
 
 // 复合组件
 ReactDOM.render ( <main>
-  <Vote cound={{n: 100,m: 1000}}  title="法国VS英国" />
+  <Vote count ={{n: 100,m: 1000}}  title="法国VS英国" />
 </main>, root )

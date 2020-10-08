@@ -1,9 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class Body extends React.Component {
-  constructor(props) {
+
+  static contextTypes = {
+    n: PropTypes.number,
+    m: PropTypes.number,
+  }
+
+
+  constructor(props, context) {
     super(props)
-   console.log(this)
+   console.log(context.n = 10)
   }
 
   render() {

@@ -16,11 +16,11 @@ export default class Vote extends React.Component {
   }
 
   getChildContext () {
-    let { count: { n = 0 , m = 0 } } = this.props 
+    let { count: { n = 10, m = 10 } } = this.props;
     return {
       n,
       m
-    };
+    }
   }
 
   constructor (props) {
@@ -28,10 +28,10 @@ export default class Vote extends React.Component {
   }
 
   render () {
-    console.log(this.props)
+    let { title, count } = this.props;
     return <section className={ 'panel-panel-default' } style={{width: 150, margin:'auto'}} >
-      <Head/>
-      <Body/>
+      <Head title={ title } />
+      <Body />
       <Footer/>
     </section>
   }
