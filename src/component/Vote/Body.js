@@ -10,15 +10,16 @@ export default class Body extends React.Component {
 
 
   constructor(props, context) {
-    super(props)
-   console.log(context.n = 10)
+    super(props,context)
   }
 
   render() {
+    let { n, m  } = this.context;
+    console.log(this.context)
     return <div className={'panel-body'} >
-      支持人数: <span>0</span>
+      支持人数: <span>{ n }</span>
       <br />
-      反对人数: <span>0</span>
+      反对人数: <span>{ m }</span>
       <br/>
       支持率: <span>0.00%</span>      
     </div>

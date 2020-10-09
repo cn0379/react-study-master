@@ -3,36 +3,56 @@ import Head from './Head'
 import Body from './Body'
 import Footer from './Footer'
 import PropTypes from 'prop-types'
+import { types } from '@babel/core'
 
 export default class Vote extends React.Component {
-  
+
   static defaultProps = {
-     
+
   }
 
   static childContextTypes = {
     n: PropTypes.number,
     m: PropTypes.number,
+    callback: PropTypes.func,
   }
 
-  getChildContext () {
-    let { count: { n = 10, m = 10 } } = this.props;
+  getChildContext() {
+    let { n, m } = this.state;
     return {
       n,
-      m
+      m,
+      callback: this.upDataContext
     }
   }
 
-  constructor (props) {
-    super(props)
+  upDataContext = tyep => {
+    console.log(this.state.m)
+    if (tyep == 'support') {
+      console.log(this.state.n)
+      this.setState({
+        n: this.state.n + 1,
+      })
+      return;
+    } else {
+      this.setState({
+        m: this.state.m + 1,
+      })
+    }
   }
 
-  render () {
-    let { title, count } = this.props;
-    return <section className={ 'panel-panel-default' } style={{width: 150, margin:'auto'}} >
-      <Head title={ title } />
+  constructor(props) {
+    super(props)
+    let { count: { n = 0, m = 0 } } = this.props;
+    this.state = { n, m };   
+  }
+
+  render() {
+    let { title } = this.props;
+    return <section className={'panel-panel-default'} style={{ width: 150, margin: 'auto' }} >
+      <Head title={title} />
       <Body />
-      <Footer/>
+      <Footer />
     </section>
   }
 }
