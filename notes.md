@@ -12,14 +12,17 @@
        componentWidllMount 第一次渲染之前
        render 第一次渲染
        componentDidMount 第一次渲染之后
-
+    
     + [修改流程: 当组件的状态发生改变(SET-STATE)或者传递给组建的属性发生改变(重新调用组件传递不同的实行) 都会引发 Render重新执行渲染(差异渲染)]
       shouldComponentUpdate 是否允许组件重新渲染
       componentWillUpdate 重现渲染之前
       render 第二次及以后重新渲染
       componentDidUpdate 重新渲染之后 
-
+    
       componentWillReceiveProps 父组件把传递给子组件的属性发生改变后出发的钩子函数
-
+    
     + [销毁: 原有渲染的内容是不消失的只不过以后并不能基于数据的改变视图了]
       componentWillUnmount: 卸载组件之前
+- ##### 平行组件的传值
+
+  先传给父组件的state 在传给你子组件
