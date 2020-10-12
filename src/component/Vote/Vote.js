@@ -3,7 +3,6 @@ import Head from './Head'
 import Body from './Body'
 import Footer from './Footer'
 import PropTypes from 'prop-types'
-import { types } from '@babel/core'
 
 export default class Vote extends React.Component {
 
@@ -48,11 +47,11 @@ export default class Vote extends React.Component {
   }
 
   render() {
-    let { title } = this.props;
+    let { title, store } = this.props;
     return <section className={'panel-panel-default'} style={{ width: 150, margin: 'auto' }} >
       <Head title={title} />
-      <Body />
-      <Footer />
+      <Body store={store} />
+      <Footer store={store} />
     </section>
   }
 }

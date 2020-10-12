@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import PropTypes from 'prop-types'
 import Swiper from './component/Swiper'
 import Vote from './component/Vote/Vote';
-
+import { createStore } from 'redux'
 // import './myJSX.js'
 /***
  * ReactDOM.render([JSX],[CONTAINER], [CALLBACK]);  把JSX元素渲染到页面中
@@ -273,6 +273,22 @@ let root = document.querySelector("#root")
 //   root)
 
 // 复合组件
-ReactDOM.render ( <main>
-  <Vote count ={{n: 100,m: 1000}}  title="法国VS英国" />
-</main>, root )
+
+let reducer = (state = { n: 0, m: 0 }, action) => {
+  switch (action.type) {
+    case 'VOTE_SUPPORT':
+      state = { ...state, n: state.n + 1 }
+      break;
+    case 'VOTE_AGAINNST':
+      state = { ...state, m: state.m + 1 }
+  }
+  return state;
+}
+
+let store = createStore(reducer);
+
+
+
+ReactDOM.render(<main>
+  <Vote count={{ n: 100, m: 1000 }}  store={store} title="法国VS英国" />
+</main>, root)
