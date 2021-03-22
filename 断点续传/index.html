@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <h1>文件上传</h1>
+
+    <form enctype="multipart/form-data" action="/login">
+      <input type="file" id="file" class="file" name="file[]" multiple><span class="btn btn-info">请选择要上传的文件</span>
+      <input type="submit" id="submit" class="btn btn-primary" value="上传">
+    </form>
+
+  </div>
+</body>
+
+<script>
+  let $ = function (id) {
+    return document.getElementById(id)
+  }
+
+  let eleFile = $('file')
+  let fileArray = [],
+    fileSplitSize = 1024 * 100
+
+  eleFile.addEventListener('change', (e) => {
+    let files = event.target.files
+    var index = 0, length = files.length;
+
+    for (; index < length; index++) {
+      let file = files[index]
+      var name = file.name, size = file.size, type = file.type || "", id = (file.lastModifiedDate + "").replace(/\W/g, '') + size + type.replace(/\W/g, '');
+      fileArray.push(id);
+      fileArray[id] = file;
+    }
+
+    console.log(fileArray);
+    var nameArray = fileArray.map(function (fileid) {
+      var nameSplit = fileArray[fileid].name.split("."),
+        name = nameSplit[nameSplit.length - 1];
+      return fileid + "." + name;
+    });
+
+    var xhr_filesize = new XMLHttpRequest();
+
+    xhr_filesize.open('GET', 'http://192.168.43.1:3001/login')
+    xhr_filesize.send();
+
+  })
+
+
+</script>
+
+</html>

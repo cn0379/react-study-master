@@ -289,6 +289,7 @@ let store = createStore(reducer);
 
 
 
+
 ReactDOM.render(<main>
   <Vote count={{ n: 100, m: 1000 }}  store={store} title="法国VS英国" />
 </main>, root)
